@@ -39,12 +39,12 @@ class Pipeline:
         self.valves = self.Valves(
             **{
                 "pipelines": ["*"],                                                           # Connect to all pipelines
-                "DB_HOST": os.getenv("DB_HOST", "localhost"),                     # Database hostname
+                "DB_HOST": os.getenv("DB_HOST", "host.docker.internal:5432"),                     # Database hostname
                 "DB_PORT": os.getenv("DB_PORT", "5432"),                                        # Database port 
                 "DB_USER": os.getenv("DB_USER", "postgres"),                                  # User to connect to the database with
                 "DB_PASSWORD": os.getenv("DB_PASSWORD", "admin"),                          # Password to connect to the database with
-                "DB_DATABASE": os.getenv("DB_DATABASE", "test_db"),                          # Database to select on the DB instance
-                "DB_TABLE": os.getenv("DB_TABLE", "matches"),                            # Table(s) to run queries against 
+                "DB_DATABASE": os.getenv("DB_DATABASE", "postgres"),                          # Database to select on the DB instance
+                "DB_TABLE": os.getenv("DB_TABLE", "tet"),                            # Table(s) to run queries against 
                 "OLLAMA_HOST": os.getenv("OLLAMA_HOST", "http://host.docker.internal:11434"), # Make sure to update with the URL of your Ollama host, such as http://localhost:11434 or remote server address
                 "TEXT_TO_SQL_MODEL": os.getenv("TEXT_TO_SQL_MODEL", "llama3.1:8b")            # Model to use for text-to-SQL generation      
             }
