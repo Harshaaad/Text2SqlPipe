@@ -21,7 +21,7 @@ from langchain_core.output_parsers import StrOutputParser
 class Pipeline:
     class Valves(BaseModel):
         DB_HOST: str
-        DB_PORT: int
+        DB_PORT: str
         DB_USER: str
         DB_PASSWORD: str
         DB_DATABASE: str
@@ -38,13 +38,13 @@ class Pipeline:
         self.valves = self.Valves(
             **{
                 "pipelines": ["*"],  # Connect to all pipelines
-                "DB_HOST": os.getenv("DB_HOST", "http://host.docker.internal"),  # Database hostname (will not work if open-webui runs in docker as docker wont be able to access localhost port)
+                "DB_HOST": os.getenv("DB_HOST", "host.docker.internal"),  # Database hostname (will not work if open-webui runs in docker as docker wont be able to access localhost port)
                 "DB_PORT": os.getenv("DB_PORT", 5432),  # Database port
                 "DB_USER": os.getenv(
                     "DB_USER", "postgres"
                 ),  # User to connect to the database with
                 "DB_PASSWORD": os.getenv(
-                    "DB_PASSWORD", "mysecretpassword"
+                    "DB_PASSWORD", "mysecetpassword"
                 ),  # Password to connect to the database with
                 "DB_DATABASE": os.getenv(
                     "DB_DATABASE", "postgres"
@@ -53,7 +53,7 @@ class Pipeline:
                     "DB_TABLE", "employees"
                 ),  # Table(s) to run queries against
                 "OLLAMA_HOST": os.getenv(
-                    "OLLAMA_HOST", "http://ollama:11434"
+                    "OLLAMA_HOST", "http://host.docker.internal:11434"
                 ),  # Make sure to update with the URL of your Ollama host, such as http://localhost:11434 or remote server address
                 "TEXT_TO_SQL_MODEL": os.getenv(
                     "TEXT_TO_SQL_MODEL", "llama3.1:8b"
