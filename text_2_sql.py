@@ -39,12 +39,12 @@ class Pipeline:
             **{
                 "pipelines": ["*"],  # Connect to all pipelines
                 "DB_HOST": os.getenv("DB_HOST", "host.docker.internal"),  # Database hostname (will not work if open-webui runs in docker as docker wont be able to access localhost port)
-                "DB_PORT": os.getenv("DB_PORT", 5432),  # Database port
+                "DB_PORT": os.getenv("DB_PORT", "5432"),  # Database port
                 "DB_USER": os.getenv(
                     "DB_USER", "postgres"
                 ),  # User to connect to the database with
                 "DB_PASSWORD": os.getenv(
-                    "DB_PASSWORD", "mysecetpassword"
+                    "DB_PASSWORD", "mysecretpassword"
                 ),  # Password to connect to the database with
                 "DB_DATABASE": os.getenv(
                     "DB_DATABASE", "postgres"
